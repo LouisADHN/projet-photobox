@@ -1,0 +1,241 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500&display=swap');
+
+/* ── Variables ─────────────────────────────────────────── */
+:root {
+  --bg:          #111111;
+  --bg-surface:  #1a1a1a;
+  --bg-card:     #222222;
+  --border:      #333333;
+  --text:        #e8e4dc;
+  --text-muted:  #888880;
+  --accent:      #c9a84c;
+  --radius:      6px;
+}
+
+/* ── Reset & base ───────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 1.7;
+  min-height: 100vh;
+}
+
+/* ── Layout ─────────────────────────────────────────────── */
+main {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem;
+}
+
+#galerie {
+  border-top: 1px solid var(--border);
+  margin-top: 2rem;
+  padding-top: 2rem;
+}
+
+/* ── Typographie ────────────────────────────────────────── */
+h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 2rem;
+  font-weight: 400;
+  color: var(--text);
+  letter-spacing: -0.02em;
+  margin-bottom: 1.5rem;
+}
+
+h4 {
+  font-size: 13px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  margin: 1rem 0 0.3rem;
+}
+
+p {
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+/* ── Section photo (exercice 1) ─────────────────────────── */
+#la_photo {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+#la_photo img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  border-radius: calc(var(--radius) - 2px);
+  display: block;
+  margin-bottom: 0.75rem;
+}
+
+/* ── Commentaires ───────────────────────────────────────── */
+#les_commentaires {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+#les_commentaires li {
+  font-size: 13px;
+  color: var(--text-muted);
+  padding: 0.6rem 0.8rem;
+  background: var(--bg-surface);
+  border-left: 2px solid var(--border);
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+
+/* ── Boutons de navigation ──────────────────────────────── */
+nav {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+button {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.4rem 1rem;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+button:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+button:disabled {
+  opacity: 0.25;
+  cursor: default;
+  border-color: var(--border);
+  color: var(--text-muted);
+}
+
+/* Bouton "load" mis en avant */
+#btn-load {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+#btn-load:hover {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+/* ── Galerie ─────────────────────────────────────────────── */
+#les_vignettes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+}
+
+#les_vignettes figure {
+  margin: 0;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  background: var(--bg-surface);
+}
+
+#les_vignettes img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  cursor: pointer;
+  display: block;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  opacity: 0.85;
+}
+
+#les_vignettes img:hover {
+  transform: scale(1.04);
+  opacity: 1;
+}
+
+/* ── Lightbox ───────────────────────────────────────────── */
+#lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  z-index: 100;
+}
+
+#lightbox.hidden {
+  display: none;
+}
+
+#lightbox-content {
+  text-align: center;
+  color: var(--text);
+}
+
+#lightbox-content img {
+  max-width: 80vw;
+  max-height: 82vh;
+  object-fit: contain;
+  display: block;
+  border-radius: var(--radius);
+}
+
+#lightbox-content p {
+  margin-top: 0.75rem;
+  font-size: 13px;
+  color: var(--text-muted);
+  letter-spacing: 0.03em;
+}
+
+/* Boutons de la lightbox */
+#lightbox button {
+  border-color: rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 1.2rem;
+  padding: 0.6rem 1rem;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+#lightbox button:hover:not(:disabled) {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+#lightbox-close {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  font-size: 1rem;
+  padding: 0.4rem 0.75rem;
+}
+
+#lightbox-details {
+  position: absolute;
+  bottom: 1.25rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 12px;
+  padding: 0.4rem 1.2rem;
+  white-space: nowrap;
+}

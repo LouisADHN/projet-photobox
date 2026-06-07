@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Photobox</title>
+  <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+
+  <main id="photo">
+    <h1>PhotoBox</h1>
+    <section id="la_photo"></section>
+  </main>
+
+  <main id="galerie">
+    <nav>
+      <button id="btn-prev">prev</button>
+      <button id="btn-load">load</button>
+      <button id="btn-next">next</button>
+      <button id="btn-first">first</button>
+      <button id="btn-last">last</button>
+    </nav>
+    <section id="les_vignettes"></section>
+  </main>
+
+  <div id="lightbox" class="hidden">
+    <button id="lightbox-close">✕</button>
+    <button id="lightbox-prev">❮</button>
+    <div id="lightbox-content"></div>
+    <button id="lightbox-next">❯</button>
+    <button id="lightbox-details">Voir les détails</button>
+  </div>
+
+  <script id="photoTemplate" type="text/x-handlebars-template">
+    <img src="{{imageUrl}}" alt="{{titre}}">
+    <h4>{{titre}}</h4>
+    <p>{{descr}}</p>
+    <p>{{type}}, {{width}} x {{height}}</p>
+    <h4 id="la_categorie">categorie : </h4>
+    <h4>commentaires :</h4>
+    <ul id="les_commentaires"></ul>
+  </script>
+
+  <script src="js/index.js" defer></script>
+</body>
+</html>

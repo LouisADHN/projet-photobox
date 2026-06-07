@@ -1,0 +1,13 @@
+{
+  "devDependencies": {
+    "esbuild": "^0.20.0",
+    "typescript": "^5.4.0"
+  },
+  "dependencies": {
+    "handlebars": "^4.7.8"
+  },
+  "scripts": {
+    "build": "esbuild src/index.ts --bundle --sourcemap --outfile=js/index.js",
+    "watch": "esbuild src/index.ts --bundle --sourcemap --outfile=js/index.js --watch"
+  }
+}
